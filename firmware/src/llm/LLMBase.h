@@ -1,10 +1,22 @@
 #pragma once
 
-#include <Stackchan_system_config.h>   // MUST BE FIRST - defines llm_param_t
+#include <Stackchan_system_config.h>   // MUST BE FIRST - defines llm_param_t + all config types
 #include <deque>
 #include <Arduino.h>
 #include <ArduinoJson.h>
 #include "SpiRamJsonDocument.h"
+
+// Common LLM parameter structure (used by ChatGPT, Grok, FunctionCall, etc.)
+struct llm_conf_t {
+    int nMcpServers = 0;
+    // Add any other fields your config uses here later if more errors appear
+};
+
+struct llm_param_t {
+    String api_key;
+    llm_conf_t llm_conf;
+    // Extend here later if needed (e.g. bool enableMemory, String model, etc.)
+};
 
 class LLMBase {
 public:
